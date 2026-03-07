@@ -59,3 +59,12 @@ jobs:
           cat values.yaml
           sed -i "s/tag:.*/tag: ${{ steps.version.outputs.VERSION }}/" values.yaml
           cat values.yaml
+
+      - name: Commit and Push new Helm values
+        run: |
+          cd gitops
+          git config user.name "github-actions"
+          git config user.email "roshane.ishara@gmail.com"
+          git add .
+          git commit -m "Update image to ${{ steps.version.outputs.VERSION }}"
+          git push        
