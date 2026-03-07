@@ -1,0 +1,1 @@
+Add the vars and secrets in Repo → Settings → Secrets and variables → Actions
