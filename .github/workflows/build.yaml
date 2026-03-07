@@ -55,4 +55,7 @@ jobs:
       - name: Update Helm values
         run: |
           cd gitops/demo-app
+          ls
+          cat values.yaml
           sed -i "s/tag:.*/tag: ${{ steps.version.outputs.VERSION }}/" values.yaml
+          cat values.yaml
