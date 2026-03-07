@@ -38,3 +38,15 @@ jobs:
           tags: |
             ${{ env.IMAGE }}:${{ steps.version.outputs.VERSION }}
             ${{ env.IMAGE }}:latest
+
+      - name: Checkout GitOps repo
+        uses: actions/checkout@v4
+        with:
+          repository: roshaneishara/argo-canary-demo-gitops
+          token: ${{ secrets.GHES_TOKEN }}
+          path: gitops
+
+      - name: Update Helm values
+        run: |
+          cd gitops/demo-app
+          sed -i "s/tag:.*/tag: ${{ steps.version.outputs.VERSION }}/" values.yaml
