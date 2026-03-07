@@ -39,10 +39,16 @@ jobs:
             ${{ env.IMAGE }}:${{ steps.version.outputs.VERSION }}
             ${{ env.IMAGE }}:latest
 
+
+      - name: Debug repo access
+        run: |
+          curl -H "Authorization: token ${{ secrets.GH_PAT }}" \
+          https://api.github.com/repos/mri-fernando/argo-canary-demo-helm
+
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
-          repository: roshaneishara/argo-canary-demo-helm
+          repository: mri-fernando/argo-canary-demo-helm
           token: ${{ secrets.GHES_TOKEN }}
           path: gitops
 
