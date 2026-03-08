@@ -60,6 +60,14 @@ jobs:
           sed -i "s/tag:.*/tag: ${{ steps.version.outputs.VERSION }}/" values.yaml
           cat values.yaml
 
+      - name: Update Helm Chart Version
+        run: |
+          cd gitops/demo-app
+          ls
+          cat Chart.yaml
+          sed -i "s/appVersion.*/appVersion ${{ steps.version.outputs.VERSION }}/" Chart.yaml
+          cat Chart.yaml
+
       - name: Commit and Push new Helm values
         run: |
           cd gitops
