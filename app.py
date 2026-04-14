@@ -6,12 +6,12 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     # Working version
-    # return "Hello Auckland k8s Demo - From version 37"
+    return "Hello Auckland k8s Demo - From version 39"
 
     #New version with simulated failure
-    if random.random() < 0.5:  # 50% chance to fail
-        return "simulated failure", 500
-    return "Hello Auckland k8s Demo - From version 38"
+    # if random.random() < 0.5:  # 50% chance to fail
+    #     return "simulated failure", 500
+    # return "Hello Auckland k8s Demo - From version 38"
 
 @app.route("/health")
 def health():
